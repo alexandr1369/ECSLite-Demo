@@ -4852,6 +4852,7 @@ GameObject:
   - component: {fileID: 3893294199639930361}
   - component: {fileID: 6982812147933622147}
   - component: {fileID: 4416926083347132233}
+  - component: {fileID: 6982812147933622148}
   m_Layer: 8
   m_Name: PlayerArmature
   m_TagString: Player
@@ -5879,6 +5880,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6982812147933622148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4416926083347132227}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2cb6649a32743e0893b93731f128d77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <FootstepAudioClips>k__BackingField:
+  - {fileID: 8300000, guid: 72f526a6a9890f643a88e85a61c86c8a, type: 3}
+  - {fileID: 8300000, guid: 85016e0f2b01da248b9663dd49a161b0, type: 3}
+  - {fileID: 8300000, guid: 186de84b3207156479abe98f4958fed0, type: 3}
+  - {fileID: 8300000, guid: 1a91fcd19acf1e54bba0945d9f390849, type: 3}
+  <FootstepAudioVolume>k__BackingField: 0.5
 --- !u!4 &6983258930626336602
 Transform:
   m_ObjectHideFlags: 0
