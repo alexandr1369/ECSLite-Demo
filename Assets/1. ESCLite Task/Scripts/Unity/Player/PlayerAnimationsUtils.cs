@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _1._ESCLite_Task.Scripts.Unity
+namespace _1._ESCLite_Task.Scripts.Unity.Player
 {
     public class PlayerAnimationsUtils : MonoBehaviour
     {

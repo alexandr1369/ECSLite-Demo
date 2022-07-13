@@ -34,6 +34,11 @@ namespace _1._ESCLite_Task.Scripts.Unity
                 .FromNew()
                 .AsSingle();
             
+            Container
+                .Bind<KeyDoorSystem>()
+                .FromNew()
+                .AsSingle();
+            
             BindSharedData();
 
             void BindSharedData()

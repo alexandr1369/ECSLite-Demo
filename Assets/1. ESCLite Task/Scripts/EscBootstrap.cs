@@ -30,22 +30,26 @@ namespace _1._ESCLite_Task.Scripts
         
         private InputSystem _inputSystem;
         
+        private KeyDoorSystem _keyDoorSystem;
+        
         private LayerMask _groundLayerMask;
 
         #endregion
 
 
         [Inject]
-        public void Construct(
+        private void Construct(
             EcsWorld ecsWorld,
             SharedData sharedData,
             PlayerSystem playerSystem,
-            InputSystem inputSystem)
+            InputSystem inputSystem,
+            KeyDoorSystem keyDoorSystem)
         {
             _ecsWorld = ecsWorld;
             _sharedData = sharedData;
             _playerSystem = playerSystem;
             _inputSystem = inputSystem;
+            _keyDoorSystem = keyDoorSystem;
         }
         
         public void Initialize()
@@ -54,6 +58,7 @@ namespace _1._ESCLite_Task.Scripts
             _ecsSystems
                 .Add(_playerSystem)
                 .Add(_inputSystem)
+                .Add(_keyDoorSystem)
                 .Init();
         }
         

@@ -1,10 +1,9 @@
-using System;
 using _1._ESCLite_Task.Scripts.Component;
 using Leopotam.EcsLite;
 using UnityEngine;
 using Zenject;
 
-namespace _1._ESCLite_Task.Scripts.Unity
+namespace _1._ESCLite_Task.Scripts.Unity.Player
 {
     [RequireComponent(typeof(Animator))]
     public class PlayerView : MonoBehaviour
@@ -13,9 +12,9 @@ namespace _1._ESCLite_Task.Scripts.Unity
 
         private EcsWorld _ecsWorld;
         
-        private Animator _animator;
+        private PlayerAnimator _playerAnimator;
         
-        // private Vector3 _lastPosition;
+        private Vector3 _lastPosition;
         
         private string _id;
 
@@ -23,7 +22,7 @@ namespace _1._ESCLite_Task.Scripts.Unity
 
 
         [Inject]
-        public void Construct(EcsWorld ecsWorld)
+        private void Construct(EcsWorld ecsWorld)
         {
             _ecsWorld = ecsWorld;
             _id = GetHashCode().ToString();
@@ -42,7 +41,9 @@ namespace _1._ESCLite_Task.Scripts.Unity
 
         private void Awake()
         {
-            _animator = GetComponent<Animator>();
+            var animator = GetComponent<Animator>();
+            _playerAnimator = new PlayerAnimator();
+            _playerAnimator.Init(animator);
         }
 
         private void Update()
@@ -59,22 +60,21 @@ namespace _1._ESCLite_Task.Scripts.Unity
                 
                 if(!playerComponent.Id.Equals(_id))
                     continue;
-                
-                // _animator.
-                
+
                 if (!transformComponent.Enabled)
                 {
                     transformComponent.Enabled = true;
                     transformComponent.Position = transform.position;
-                    // _lastPosition = transformComponent.Position;
+                    _lastPosition = transformComponent.Position;
                 }
                 else
                 {
-                    // TODO: смотреть в сторону движения
+                    // TODO: смотреть в сторону движения и регулировать скорость
                     
-                    // var direction = (transformComponent.Position - _lastPosition).normalized;
+                    var direction = (transformComponent.Position - _lastPosition).normalized;
                     // Debug.Log(direction);
                     transform.position = transformComponent.Position;
+                    _playerAnimator.SetState(true);
                     // transform.LookAt(direction);
                     // _lastPosition = transform.position;
                 }
