@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace _1._ESCLite_Task__Petrov_.Scripts
+namespace _1._ESCLite_Task.Scripts.Unity
 {
     public class PlayerAnimationsUtils : MonoBehaviour
     {
