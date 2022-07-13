@@ -21,13 +21,13 @@ namespace _1._ESCLite_Task.Scripts.Unity.Player
         public void Init(Animator animator)
         {
             _animator = animator;
+            _animator.SetFloat(MotionSpeed, MOVEMENT_SPEED);
         }
             
         public void SetState(bool state)
         {
             var value = state? MOVEMENT_SPEED : NONE_SPEED;
             _animator.SetFloat(Speed, value);
-            _animator.SetFloat(MotionSpeed, value);
         }
     }
 }

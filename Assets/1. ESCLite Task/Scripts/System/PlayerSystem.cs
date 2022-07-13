@@ -9,12 +9,12 @@ namespace _1._ESCLite_Task.Scripts.System
         public void Run(EcsSystems systems)
         {
             var ecsWorld = systems.GetWorld();
-            var playerEntities = ecsWorld.Filter<PlayerComponent>().Inc<TransformComponent>().End();
             var inputs = ecsWorld.Filter<InputComponent>().End();
+            var playerEntities = ecsWorld.Filter<PlayerComponent>().Inc<TransformComponent>().End();
             
             var playerComponentsPool = ecsWorld.GetPool<PlayerComponent>();
-            var transformComponentsPool = ecsWorld.GetPool<TransformComponent>();
             var inputComponentsPool = ecsWorld.GetPool<InputComponent>();
+            var transformComponentsPool = ecsWorld.GetPool<TransformComponent>();
             
             var sharedData = systems.GetShared<EscBootstrap.SharedData>();
             var movementSpeed = sharedData.PlayerMovementSpeed;

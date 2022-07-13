@@ -1,6 +1,5 @@
 using _1._ESCLite_Task.Scripts.Component;
 using Leopotam.EcsLite;
-using UnityEngine;
 
 namespace _1._ESCLite_Task.Scripts.System
 {

@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 063b06d534ab4aab8cb62f7a0b38f9bc, type: 3}
   m_Name: DoorConfig
   m_EditorClassIdentifier: 
-  <OpeningSpeed>k__BackingField: 0.05
+  <OpeningSpeed>k__BackingField: 50

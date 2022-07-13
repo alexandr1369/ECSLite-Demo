@@ -8,13 +8,14 @@ namespace _1._ESCLite_Task.Scripts.Unity.Player
     [RequireComponent(typeof(Animator))]
     public class PlayerView : MonoBehaviour
     {
+        private const float MIN_PLAYER_MOVEMENT_DISTANCE = .1f;
+        
+        
         #region Fields
 
         private EcsWorld _ecsWorld;
         
         private PlayerAnimator _playerAnimator;
-        
-        private Vector3 _lastPosition;
         
         private string _id;
 
@@ -48,8 +49,10 @@ namespace _1._ESCLite_Task.Scripts.Unity.Player
 
         private void Update()
         {
-            // var inputComponentsPool = _ecsWorld.GetPool<InputComponent>();
+            var inputs = _ecsWorld.Filter<InputComponent>().End();
             var playerEntities = _ecsWorld.Filter<PlayerComponent>().Inc<TransformComponent>().End();
+            
+            var inputComponentsPool = _ecsWorld.GetPool<InputComponent>();
             var playerComponentsPool = _ecsWorld.GetPool<PlayerComponent>();
             var transformComponentsPool = _ecsWorld.GetPool<TransformComponent>();
 
@@ -65,18 +68,30 @@ namespace _1._ESCLite_Task.Scripts.Unity.Player
                 {
                     transformComponent.Enabled = true;
                     transformComponent.Position = transform.position;
-                    _lastPosition = transformComponent.Position;
+                    _playerAnimator.SetState(false);
                 }
                 else
                 {
-                    // TODO: смотреть в сторону движения и регулировать скорость
+                    foreach (var input in inputs)
+                    {
+                        var inputComponent = inputComponentsPool.Get(input);
+                        var lookAtPosition = new Vector3(inputComponent.Position.x,
+                            transformComponent.Position.y, inputComponent.Position.z);
+                        var playerToInputDistance = (lookAtPosition - transformComponent.Position).magnitude;
+                        
+                        if(!inputComponent.Id.Equals(playerComponent.Id)
+                           || !inputComponent.Enabled
+                           || playerToInputDistance <= MIN_PLAYER_MOVEMENT_DISTANCE)
+                        {
+                            _playerAnimator.SetState(false);
+                            continue;
+                        }
+                        
+                        transform.position = transformComponent.Position;
+                        _playerAnimator.SetState(true);
                     
-                    var direction = (transformComponent.Position - _lastPosition).normalized;
-                    // Debug.Log(direction);
-                    transform.position = transformComponent.Position;
-                    _playerAnimator.SetState(true);
-                    // transform.LookAt(direction);
-                    // _lastPosition = transform.position;
+                        transform.LookAt(lookAtPosition);
+                    }
                 }
             }
         }

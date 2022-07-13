@@ -35,13 +35,10 @@ namespace _1._ESCLite_Task.Scripts.Unity
             keyComponent.Id = _id;
             doorComponent.Id = _id;
             DoorView.Init(_ecsWorld, _id);
-            
-            Debug.Log(_id);
         }
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log(other.name);
             if(!other.GetComponent<PlayerView>()) return;
             UpdateState(true);
         }
@@ -62,11 +59,9 @@ namespace _1._ESCLite_Task.Scripts.Unity
             {
                 ref var keyComponent = ref keyComponentsPool.Get(key);
                 
-                Debug.Log("Trying: comp id " + keyComponent.Id + " and id " + _id);
                 if(!keyComponent.Id.Equals(_id))
                     continue;
                 
-                Debug.Log(name + " pressed");
                 keyComponent.IsPressed = state;
             }
         }

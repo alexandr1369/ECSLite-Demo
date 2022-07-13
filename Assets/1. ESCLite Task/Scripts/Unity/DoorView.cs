@@ -63,9 +63,9 @@ namespace _1._ESCLite_Task.Scripts.Unity
                 }
 
                 var doorOpeningSpeed = DoorConfig.OpeningSpeed;
-                _openingAnimationNormalizedTime = 
-                    Mathf.Clamp(_openingAnimationNormalizedTime + doorOpeningSpeed / OPENING_SPEED_DIVIDER,
-                        0, 1f);
+                var normalizedTime = 
+                    _openingAnimationNormalizedTime + doorOpeningSpeed / OPENING_SPEED_DIVIDER * Time.deltaTime;
+                _openingAnimationNormalizedTime = Mathf.Clamp(normalizedTime, 0, 1f);
                 
                 SetDoorOpening();
             }
