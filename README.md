@@ -6,4 +6,4 @@
 
 Список систем, независящих от Unity:
 1) KeyDoorSystem.cs
-2) PlayerSystem.cs (Vector3 only)
+2) PlayerMovementSystem.cs (Vector3 only)
