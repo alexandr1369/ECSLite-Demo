@@ -25,7 +25,7 @@ namespace _1._ESCLite_Task.Scripts.Unity
                 .AsSingle();
 
             Container
-                .Bind<PlayerSystem>()
+                .Bind<PlayerMovementSystem>()
                 .FromNew()
                 .AsSingle();
             

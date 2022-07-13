@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace _1._ESCLite_Task.Scripts.System
 {
-    public class PlayerSystem : IEcsRunSystem
+    public class PlayerMovementSystem : IEcsRunSystem
     {
         public void Run(EcsSystems systems)
         {

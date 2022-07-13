@@ -26,7 +26,7 @@ namespace _1._ESCLite_Task.Scripts
         
         private SharedData _sharedData;
         
-        private PlayerSystem _playerSystem;
+        private PlayerMovementSystem _playerMovementSystem;
         
         private InputSystem _inputSystem;
         
@@ -41,13 +41,13 @@ namespace _1._ESCLite_Task.Scripts
         private void Construct(
             EcsWorld ecsWorld,
             SharedData sharedData,
-            PlayerSystem playerSystem,
+            PlayerMovementSystem playerMovementSystem,
             InputSystem inputSystem,
             KeyDoorSystem keyDoorSystem)
         {
             _ecsWorld = ecsWorld;
             _sharedData = sharedData;
-            _playerSystem = playerSystem;
+            _playerMovementSystem = playerMovementSystem;
             _inputSystem = inputSystem;
             _keyDoorSystem = keyDoorSystem;
         }
@@ -56,7 +56,7 @@ namespace _1._ESCLite_Task.Scripts
         {
             _ecsSystems = new EcsSystems(_ecsWorld, _sharedData);
             _ecsSystems
-                .Add(_playerSystem)
+                .Add(_playerMovementSystem)
                 .Add(_inputSystem)
                 .Add(_keyDoorSystem)
                 .Init();
